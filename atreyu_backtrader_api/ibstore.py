@@ -44,6 +44,7 @@ from ibapi.client import EClient
 from ibapi.wrapper import EWrapper
 from ibapi.contract import Contract
 from ibapi.ticktype import TickTypeEnum
+from ibapi.order_cancel import OrderCancel
 
 import logging
 logger = logging.getLogger(__name__)
@@ -1990,7 +1991,8 @@ class IBStore(with_metaclass(MetaSingleton, object)):
 
     def cancelOrder(self, orderid):
         '''Proxy to cancelOrder'''
-        self.conn.cancelOrder(orderid)
+        orderCancel = OrderCancel()
+        self.conn.cancelOrder(orderid,orderCancel)
     
     def placeOrder(self, orderid, contract, order):
         '''Proxy to placeOrder'''
